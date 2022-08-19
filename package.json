@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start:dev": "",
-    "start": "",
-    "server": "",
-    "build": "",
+    "start:dev": "cd server && nodemon server.js",
+    "start": "concurrently \"cd client && npm run build\" \"cd server && npm start\" ",
+    "server": " cd server && node server.js",
+    "build": "cd client && npm run build",
     "install": "",
     "client": ""
   },
@@ -22,5 +22,13 @@
     "concurrently": "^5.2.0",
     "nodemon": "^2.0.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LSton40/ghoulscriber_PWA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LSton40/ghoulscriber_PWA/issues"
+  },
+  "homepage": "https://github.com/LSton40/ghoulscriber_PWA#readme",
   "description": ""
 }

@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const { InjectManifest, GenerateSW} = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
@@ -18,11 +18,31 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.join(__dirname, 'index.html')
+      }),
+      new GenerateSW(),
+      new InjectManifest(),
+      new WebpackPwaManifest()
     ],
 
     module: {
       rules: [
+        {
+          test: /\.css$/i,
+          use: ['css-loader']
+        },
+        {
+          test: /`.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', {targets: "defaults"}]
+            }
+          }
+        }
         
       ],
     },
