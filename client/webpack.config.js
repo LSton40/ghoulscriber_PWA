@@ -23,23 +23,42 @@ module.exports = () => {
         template: path.join(__dirname, 'index.html')
       }),
       new GenerateSW(),
-      new InjectManifest(),
-      new WebpackPwaManifest()
+      new InjectManifest({
+        swSrc: '/src-sw.js'
+      }),
+      new WebpackPwaManifest({
+        name: 'JATE PWA',
+        short_name: 'JATE',
+        description: 'JATE Text Editor!',
+        background_color: '#ffffff',
+        crossorigin: null,
+        fingerprints: false,
+        icons: [
+          {
+            src: path.resolve('./src/images/logo.png'),
+            size: '96x96',
+            destination: path.join('assets', 'icons'),
+            output: {
+              filename: 'logo.png'
+            }
+          },
+        ]
+      })
     ],
 
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: ['css-loader']
+          use: ['style-loader', 'css-loader']
         },
         {
-          test: /`.m?js$/,
+          test: /.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', {targets: "defaults"}]
+              presets: ['@babel/preset-env']
             }
           }
         }
