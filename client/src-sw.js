@@ -28,10 +28,3 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
 registerRoute();
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-      .register('src-sw.js')
-      .then((register) => {
-          console.log(register) })
-};

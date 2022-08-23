@@ -31,15 +31,20 @@ module.exports = () => {
         short_name: 'JATE',
         description: 'JATE Text Editor!',
         background_color: '#ffffff',
-        crossorigin: null,
+        theme_color: '#ffffff',
+        inject: true,
         fingerprints: false,
+        ios: true,
         icons: [
           {
             src: path.resolve('./src/images/logo.png'),
             size: '96x96',
             destination: path.join('assets', 'icons'),
+            purpose: 'maskable',
+            ios: true,
             output: {
-              filename: 'logo.png'
+              filename: 'logo.png',
+              purpose: 'maskable'
             }
           },
         ]
