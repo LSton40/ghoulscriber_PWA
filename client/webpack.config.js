@@ -20,11 +20,12 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: path.join(__dirname, 'index.html')
+        template: path.join(__dirname, 'index.html'),
+        favicon: './favicon.ico'
       }),
       new GenerateSW(),
       new InjectManifest({
-        swSrc: '/src-sw.js'
+        swSrc: './src-sw.js'
       }),
       new WebpackPwaManifest({
         name: 'JATE PWA',
@@ -34,17 +35,16 @@ module.exports = () => {
         theme_color: '#ffffff',
         inject: true,
         fingerprints: false,
+        start_url: '/',
+        publicPath: '/',
         ios: true,
-        icons: [
-          {
+        icons: [{
             src: path.resolve('./src/images/logo.png'),
-            size: '96x96',
+            sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
-            purpose: 'maskable',
             ios: true,
             output: {
-              filename: 'logo.png',
-              purpose: 'maskable'
+              filename: 'logo.png'
             }
           },
         ]
