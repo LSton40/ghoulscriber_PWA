@@ -7,7 +7,9 @@
     "start": "concurrently \"cd client && npm run start\" \"cd server && node server.js\"",
     "server": "cd server && npm run server",
     "build": "cd client && npm run build",
-    "install": "concurrently \"cd client && npm install\" \"cd server && npm install\" ",
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && npm install",
+    "install": "npm install && concurrently \"npm install:client\" \"npm install:server\" ",
     "client": "cd client && npm run start"
   },
   "keywords": [],
