@@ -26,6 +26,7 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
+//Function to cache data in browser
 registerRoute(({request}) => ['style', 'script', 'worker'].includes(request.destination), 
   new StaleWhileRevalidate({
     cacheName: 'asset-cache',

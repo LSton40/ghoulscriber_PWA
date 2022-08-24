@@ -1,5 +1,6 @@
 import { openDB } from 'idb';
 
+//Function to initialize database
 const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
@@ -12,6 +13,7 @@ const initdb = async () =>
     },
   });
 
+//Function to save to database
 export const putDb = async (content) => {
   
   try {
@@ -27,6 +29,7 @@ export const putDb = async (content) => {
   
 };
 
+//Function to read from database
 export const getDb = async () => {
 
   try {
